@@ -9,7 +9,7 @@
 	<link rel="icon" href="images/favicon.ico" type="image/ico" />
   <link rel="stylesheet" href="css/style.css">
 
-    <title>Financial Credit Syatem| </title>
+    <title>Financial Credit Syatem</title>
 
     <!-- Bootstrap -->
     <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.php" class="site_title"><i class="fa fa-credit-card"></i><span>FCS</span></a>
+              <a href="dashboard.php" class="site_title"><i class="fa fa-credit-card"></i><span>FCS</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -52,8 +52,8 @@
                   </li>
                   <li><a><i class="fa fa-users"></i>Borrower<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
-                      <li><a href="new_borrower.php">New Borrower</a></li>
-                      <li><a href="list_orrower.php">List Borrower</a></li>
+                      <li><a href="add_borrowers.php">New Borrower</a></li>
+                      <li><a href="list_borrower.php">List Borrower</a></li>
                      
                     </ul> 
                   </li>

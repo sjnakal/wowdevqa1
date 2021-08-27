@@ -10,6 +10,10 @@
       </div>
     </div>
 
+    
+   
+    
+
     <!-- jQuery -->
     <script src="../vendors/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap -->
@@ -28,6 +32,8 @@
     <script src="../vendors/iCheck/icheck.min.js"></script>
     <!-- Skycons -->
     <script src="../vendors/skycons/skycons.js"></script>
+    <!-- validator -->
+    <!-- <script src="../vendors/validator/validator.js"></script> -->
     <!-- Flot -->
     <script src="../vendors/Flot/jquery.flot.js"></script>
     <script src="../vendors/Flot/jquery.flot.pie.js"></script>
@@ -50,6 +56,11 @@
 
     <!-- Custom Theme Scripts -->
     <script src="../build/js/custom.min.js"></script>
+
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+   <script src="../vendors/validator/multifield.js"></script>
+    <script src="../vendors/validator/validator.js"></script>
+    
 	
   </body>
 </html>
