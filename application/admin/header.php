@@ -53,7 +53,7 @@
                   <li><a><i class="fa fa-users"></i>Borrower<span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                       <li><a href="add_borrowers.php">New Borrower</a></li>
-                      <li><a href="list_borrower.php">List Borrower</a></li>
+                      <li><a href="list_borrowers.php">List Borrower</a></li>
                      
                     </ul> 
                   </li>

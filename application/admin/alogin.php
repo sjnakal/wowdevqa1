@@ -1,13 +1,7 @@
-
-<?php/*
+<?php 
 session_start();
-if(!isset($_SESSION["login_value"])){
-    $_SESSION["login_value"]==0;
-    header("location:alogin.php");
-}elseif ($_SESSION["login_value"]==1) {
-    header("location:index.php");
-} */
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +42,7 @@ if(!isset($_SESSION["login_value"])){
           <section class="login_content">
             <form method="post" action="">
               <h1>Login Form</h1>
-			  <?php
+			    <?php
 						if(isset($_POST["login"])){
 						include "connect.php";
                         $username=mysqli_real_escape_string($con,$_POST["email"]);
@@ -56,7 +50,7 @@ if(!isset($_SESSION["login_value"])){
                         $select="select * from user where user_name ='$username' or email='$username' and password='$pass'";
                         $result=mysqli_query($con,$select);	
                         $row=mysqli_fetch_assoc($result);					
-					   if(mysqli_num_rows($result)>=1){
+					                if(mysqli_num_rows($result)>=1){
                             $_SESSION["login_value"]=1;
                             $_SESSION["user_name"]=$row['user_name'];
                             header("location:index.php");
@@ -78,7 +72,7 @@ if(!isset($_SESSION["login_value"])){
               </div>
               <div>
               <button type="submit" class="btn btn-info submit" name="login">Log in</button>
-              <!-- <button class="btn btn-default submit" type="submit" name="login">Log in</button> -->
+             
                 <a class="reset_pass" href="#">Lost your password?</a>
               </div>
 

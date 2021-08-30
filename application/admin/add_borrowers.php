@@ -1,11 +1,12 @@
 <?php include('header.php'); ?>
 
 
-<div class="box-body">
+
 <?php
+include "connect.php";
 if(isset($_POST['submit']))
 {
-include "connect.php";
+
 $name =  mysqli_real_escape_string($con, $_POST['name']);
 $address = mysqli_real_escape_string($con, $_POST['address']);
 $city = mysqli_real_escape_string($con, $_POST['city']);
@@ -21,61 +22,24 @@ $user_name = mysqli_real_escape_string($con, $_POST['user_name']);
 $password = mysqli_real_escape_string($con, $_POST['password']);
 $telephone = mysqli_real_escape_string($con, $_POST['telephone']);
 
+$image=$_FILES['image']['name'];
+$tmp_name=$_FILES['image']['tmp_name'];
 
-//$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-//$image_name = addslashes($_FILES['image']['name']);
-//$image_size = getimagesize($_FILES['image']['tmp_name']);
+$insert=mysqli_query($con,"INSERT INTO borrowers (name,address,city,state,country,occupation,pan_no,email,mobile_no,account_no,dob,user_name,password,telephone,image) VALUES('$name','$address','$city','$state','$country','$occupation','$pan_no','$email','$mobile_no','$account_no','$dob','$user_name','$password','$telephone', '$image' ) ");
 
-$target_dir = "../img/";
-$target_file = $target_dir.basename($_FILES["image"]["name"]);
-$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-$check = getimagesize($_FILES["image"]["tmp_name"]);
+// $insert = mysqli_query($con, "INSERT INTO `borrowers`(`name`, `address`, `city`, `state`, `country`, `occupation`, `pan_no`, `email`, `mobile_no`, `account_no`, `dob`, `user_name`, `password`, `telephone`, `image`) VALUES ('$name','$address','$city','$state','$country','$occupation','$pan_no','$email','$mobile_no','$account_no','$dob','$user_name','$password','$telephone', '$image' ")or die (mysqli_error($con));
 
-if($check == false)
-{
-	echo '<meta http-equiv="refresh" content="2;url=view_emp.php?tid='.$id.'&&mid='.base64_encode("409").'">';
-	echo '<br>';
-	echo'<span class="itext" style="color: #FF0000">Invalid file type</span>';
-}
-elseif(file_exists($target_file)) 
-{
-	echo '<meta http-equiv="refresh" content="2;url=view_emp.php?tid='.$id.'&&mid='.base64_encode("409").'">';
-	echo '<br>';
-	echo'<span class="itext" style="color: #FF0000">Already exists.</span>';
-}
-elseif($_FILES["image"]["size"] > 500000)
-{
-	echo '<meta http-equiv="refresh" content="2;url=view_emp.php?tid='.$id.'&&mid='.base64_encode("409").'">';
-	echo '<br>';
-	echo'<span class="itext" style="color: #FF0000">Image must not more than 500KB!</span>';
-}
-elseif($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif")
-{
-	echo '<meta http-equiv="refresh" content="2;url=view_emp.php?tid='.$id.'&&mid='.base64_encode("409").'">';
-	echo '<br>';
-	echo'<span class="itext" style="color: #FF0000">Sorry, only JPG, JPEG, PNG & GIF Files are allowed.</span>';
-}
-else{
-	$sourcepath = $_FILES["image"]["tmp_name"];
-	$targetpath = "../img/" . $_FILES["image"]["name"];
-	move_uploaded_file($sourcepath,$targetpath);
-	
-	$location = "img/".$_FILES['image']['name'];
-
-$insert = mysqli_query($con, "INSERT INTO `borrowers`(`name`, `address`, `city`, `state`, `country`, `occupation`, `pan_no`, `email`, `mobile_no`, `account_no`, `dob`, `user_name`, `password`, `telephone`) VALUES ('$name','$address','$city','$state','$country','$occupation','$pan_no','$email','$mobile_no','$account_no','$dob','$user_name','$password','$telephone')")or die (mysqli_error($con));
 if(!$insert)
 {
-echo "<div class='alert alert-info'>Unable to Insert Borrower Records.....Please try again later</div>";
+   echo "<div class='alert alert-info'>Unable to Insert Borrower Records.....Please try again later</div>";
 }
 else{
-echo "<div class='alert alert-success'>Borrower Information Created Successfully!</div>";
+	move_uploaded_file($tmp_name,'images/borrower_images/'.$image);
+   echo "<div class='alert alert-success ml-5'>Borrower Information Created Successfully!</div>";
 }
 }
-}
+
 ?>	
-
-
-
 
            <!-- page content -->
            <div class="right_col" role="main">
@@ -104,7 +68,7 @@ echo "<div class='alert alert-success'>Borrower Information Created Successfully
                                     <div class="clearfix"></div>
                                 </div>
                                 <div class="x_content">
-                                    <form class="" action="" method="post" novalidate>
+                                    <form class="" action="add_borrowers.php" method="post" novalidate  enctype="multipart/form-data">
                                         
                                         <span class="section">Personal Info</span>
                                         <div class="field item form-group">
@@ -416,12 +380,12 @@ echo "<div class='alert alert-success'>Borrower Information Created Successfully
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Mobile Number <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="number" class='number' name="mobile_no" data-validate-range="10" required='required' placeholder="enter mobile no."/></div>
+                                                <input class="form-control" type="mobile number" class='mobile number' name="mobile_no" data-validate-range="10" required='required' placeholder="enter mobile no."/></div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">Bank A/C no. <span class="required">*</span></label>
                                             <div class="col-md-6 col-sm-6">
-                                                <input class="form-control" type="number" class='number' name="account_no" data-validate-range="20,100" required='required' placeholder="enter bank a/c no."/></div>
+                                                <input class="form-control" type="acount number" class='account number' name="account_no" data-validate-range="20,100" required='required' placeholder="enter bank a/c no."/></div>
                                         </div>
                                         <div class="field item form-group">
                                             <label class="col-form-label col-md-3 col-sm-3  label-align">DOB <span class="required">*</span></label>
@@ -460,7 +424,7 @@ echo "<div class='alert alert-success'>Borrower Information Created Successfully
                                         <div class="field item form-group">
                                         <label class="col-form-label col-md-3 col-ms-3 label-align">Your Image<span class="required">*</spam</span></label>
                                         <div class="col-md-6 col-sm-6">
-		                                    <input type='file' name="image" onChange="readURL(this);" /required>
+		                                    <input type='file' name="image" required="required"/>
        				                    <img id="blah"  src="" alt="Image Here" height="100" width="100"/>
 			                          </div>
 			                          </div>

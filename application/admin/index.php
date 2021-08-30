@@ -1,4 +1,14 @@
-<?php include('header.php') ?>
+<?php include('header.php'); ?>
+
+<?php/*
+session_start();
+if(!isset($_SESSION["login_value"])){
+    $_SESSION["login_value"]==0;
+    header("location:alogin.php");
+}elseif ($_SESSION["login_value"]==1) {
+    header("location:index.php");
+}*/
+?>
 
         <div class="col-lg-3 col-xs-4">
           <!-- small box -->
@@ -73,4 +83,4 @@
 
 
 
-<?php include('footer.php') ?>
+<?php include('footer.php'); ?>
