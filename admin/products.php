@@ -62,6 +62,16 @@ if(isset($_GET['del'])){
               <th>Description</th>
               <th>Image</th>
               <th>Action</th>
+              <th>Product ID</th>
+              <th>Name</th>
+              <th>group</th>
+              <th>vendor</th>
+              <th>Rate</th>
+              <th>Unit type</th>
+              <th>Reg. Date</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Action</th>
                           
                         </tr>
                       </thead>
@@ -72,6 +82,8 @@ if(isset($_GET['del'])){
         $select_prod="SELECT product_detail.product_id, product_detail.product_name, product_detail.product_group_fk, product_detail.fk_vendor_id, product_detail.product_rate, product_detail.unit_type, product_detail.product_des, product_detail.product_image, product_detail.product_reg_date, product_group.prodgroup_id,product_group.prodgroup_name,organization.id, organization.name FROM product_detail, product_group, organization WHERE product_detail.fk_vendor_id= organization.id AND product_detail.product_group_fk=product_group.prodgroup_id ORDER BY product_detail.product_name ASC";
         $prod_result=mysqli_query($con,$select_prod);
         while($prod_row=mysqli_fetch_assoc($prod_result)){  
+
+          
         ?>
                 <tr class="gradeX">
           <td><?php echo $sno;?></td>
