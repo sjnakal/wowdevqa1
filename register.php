@@ -19,6 +19,7 @@ $district=mysqli_real_escape_string($con,$_POST['district']);
 $mun=mysqli_real_escape_string($con,$_POST['mun']);
 $ward=mysqli_real_escape_string($con,$_POST['ward']);
 $tol=mysqli_real_escape_string($con,$_POST['tol']);
+$zip_code=mysqli_real_escape_string($con,$_POST['zipcode']);
 $reg_date= date('Y-m-d h:m:s');
 $status=mysqli_real_escape_string($con,$_POST['status']);
 
@@ -32,7 +33,7 @@ move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
 
   //  echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-$insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `password`, `user_type`, `bank_name`, `account_no`, `pan_no`, `country`, `province`, `district`, `municipality`, `word`, `tole`, `image`, `status`,`reg_date`) VALUES ('$email','$mobile','$phone','$username','$password', '$user_type', '$bank_name', '$account','$pan','$country','$province','$district','$mun','$ward','$tol','$img','$status','$reg_date')";
+$insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `password`, `user_type`, `bank_name`, `account_no`, `pan_no`, `country`, `province`, `district`, `municipality`, `word`, `tole`, `zip_code`, `image`, `status`,`reg_date`) VALUES ('$email','$mobile','$phone','$username','$password', '$user_type', '$bank_name', '$account','$pan','$country','$province','$district','$mun','$ward','$tol','$zip_code','$img','$status','$reg_date')";
 
 
         if (mysqli_query($con,$insert)) {
@@ -136,7 +137,7 @@ $insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `p
   <div class="row mt-3">
       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
        <label  class="col-md-2" for="heard">Country</label>
-         <div class="col-md-10">
+         <div class="col-md-10 col-ms-6">
         
          <select class="form-control action" name="country" id="country">
           <option>Choose Country</option>
@@ -158,7 +159,7 @@ $insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `p
     </div>
     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
       <label  class="col-md-2" for="heard">Province </label>
-      <div class="col-md-10">
+      <div class="col-md-10 col-ms-4">
         <select name="state" id="state" class="form-control action">
           <option value="">Select Province</option>
         </select>
@@ -168,7 +169,7 @@ $insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `p
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
       <label  class="col-md-2" for="heard">District </label>
-      <div class="col-md-10">
+      <div class="col-md-10 col-ms-4">
         <select name="district" id="district" class="form-control action">
           <option value="">Select district</option>
         </select>
@@ -176,7 +177,7 @@ $insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `p
       </div>
       <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
       <label  class="col-md-2" for="heard">Local <small>eg.mun/VDC</small> </label>
-      <div class="col-md-10">
+      <div class="col-md-10 col-ms-4">
         <select name="mun" id="mun" class="form-control action">
           <option value="">Local level</option>
         </select>
@@ -187,7 +188,7 @@ $insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `p
     
     <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
       <label  class="col-md-2" for="heard">Ward No.</label>
-      <div class="col-md-10">
+      <div class="col-md-10 col-ms-4">
       <select name="ward" id="ward" class="form-control action">
         <option value=""> Choose Ward Number</option>
        
@@ -196,24 +197,24 @@ $insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `p
       </div>
     </div>
 
-    <div class="form-group col-md-6">
-        <label for="number" class="col-md-2 font-weight-bold pl-2">Zip Code</label>
-      <div class="col-md-3">
-        <input type="number"class="form-control" placeholder="Zip Code" name="zip">
+    <div class="col-md-6 col-sm-6 col-xs-12 form-group">
+        <label for="zip" class="col-md-2 font-weight-bold pl-2">Zip Code</label>
+      <div class="col-md-3 col-ms-3">
+        <input type="number"class="form-control" id="zip" placeholder="Zip Code" name="zipcode">
       </div>
     </div>
   </div>
    <div class="row">
-  <div class="form-group col-md-6">
+  <div class="col-md-6 col-sm-6 col-xs-12 form-group ">
     <label class="col-md-2" for="heard">Tole Name</label>
-    <div class="col-md-10">
+    <div class="col-md-10 col-ms-4">
       <input type="text" name="tol" class="form-control" id="heard" placeholder="Tole Name" >
     </div>
   </div>
   
   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
       <label  class="col-md-2" for="heard">Status</label>
-      <div class="col-md-10">
+      <div class="col-md-10 col-ms-4">
        <select name="status" class="form-control action">
          <option value="1">Active</option>
          <option value="2">Disable</option>
@@ -225,13 +226,13 @@ $insert= "INSERT INTO `organization`( `email`, `mobile`, `phone`, `username`, `p
 
   <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback file-field">
     <label class="col-md-2">Profile picture</label>
-    <div class="col-md-6">
+    <div class="col-md-6 col-ms-4">
       
       <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" multiple="multiple">
     </div>
   </div>
     <!-- End of Selection of Address -->
-    <div class="col-md-2">
+    <div class="col-md-2 col-ms-4 col-xs-3  col-xl-2">
       <input type="button" class="btn btn-primary btn-sm" value="Go back!" style="float:left;" onclick="history.back()">
       <button class="btn btn-primary btn-sm" name="submit" type="submit"  style="float:right;">Submit</button>
       
@@ -293,7 +294,7 @@ $('#'+result).html(data);
 
 function showExtra(givenType){
   const htmlpart = `<div class="row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="name" class="col-md-2 font-weight-bold pl-2">Full Name</label>
            
             <div class="col-md-10">
@@ -301,7 +302,7 @@ function showExtra(givenType){
           </div>
 
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="email" class="col-md-2 font-weight-bold pl-2">Email:</label>
             <div class="col-md-10">
           <input type="email" class="form-control" placeholder="Email" name="email" required="required">
@@ -311,13 +312,13 @@ function showExtra(givenType){
 
 
       <div class="row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="phone" class="col-md-2 font-weight-bold pl-2">Mobile Number</label>
             <div class="col-md-10">
            <input type="phone" class="form-control" placeholder="Mobile Number" name="mobile" pattern="[0-9]{2}[0-9]{8}" required="required">
           </div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
             <label for="phone" class="col-md-2 font-weight-bold pl-2">Phone</label>
             <div class="col-md-10">
          <input type="text" class="form-control" placeholder="Phone" name="phone" required="required"> 
@@ -326,7 +327,7 @@ function showExtra(givenType){
 </div>
     <div class="row">
 
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="username" class="col-md-2 font-weight-bold pl-2">Username</label>
            
@@ -334,7 +335,7 @@ function showExtra(givenType){
            <input type="text" class="form-control" placeholder="Username" name="username" required="required">
           </div>
         </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="password" class="col-md-2 font-weight-bold pl-2">Password</label>
             <div class="col-md-10">
            <input type="password" class="form-control" placeholder="password" name="password" required="required">
@@ -343,7 +344,7 @@ function showExtra(givenType){
 </div>
 
 <div class="row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="date" class="col-md-2 font-weight-bold pl-2">DOB</label>
            
@@ -351,7 +352,7 @@ function showExtra(givenType){
            <input type="date" class="form-control" placeholder="DOB" name="dob" required="required">
           </div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="pan" class="col-md-2 font-weight-bold pl-2">PAN NO</label>
            
@@ -363,7 +364,7 @@ function showExtra(givenType){
 
       <div class="row">
 
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="bank" class="col-md-2 font-weight-bold pl-2">Bank Name</label>
            
@@ -371,7 +372,7 @@ function showExtra(givenType){
            <input type="text" class="form-control" placeholder="Bank Name" name="bname" required="required">
           </div>
         </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="aname" class="col-md-2 font-weight-bold pl-2">Account Name</label>
             <div class="col-md-10">
            <input type="text"  class="form-control" placeholder="Account Name" name="accountname" required="required">
@@ -381,7 +382,7 @@ function showExtra(givenType){
 
 <div class="row">
 
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="account" class="col-md-2 font-weight-bold pl-2">Account No.</label>
            
@@ -403,7 +404,7 @@ if(givenType=='borrower'){
 
 function showExtra(givenType){
     const htmlpart = `<div class="row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="bankname" class="col-md-2 font-weight-bold pl-2">Bank Name</label>
            
             <div class="col-md-10">
@@ -411,7 +412,7 @@ function showExtra(givenType){
           </div>
 
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="email" class="col-md-2 font-weight-bold pl-2">Email:</label>
             <div class="col-md-10">
           <input type="email" class="form-control" placeholder="Email" name="email" required="required">
@@ -420,13 +421,13 @@ function showExtra(givenType){
       </div>
 
        <div class="row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="phone" class="col-md-2 font-weight-bold pl-2">Mobile Number</label>
             <div class="col-md-10">
            <input type="phone" class="form-control" placeholder="Mobile Number" name="mobile" pattern="[0-9]{2}[0-9]{8}" required="required">
           </div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
             <label for="phone" class="col-md-2 font-weight-bold pl-2">Phone</label>
             <div class="col-md-10">
          <input type="text" class="form-control" placeholder="Phone" name="phone" required="required"> 
@@ -436,7 +437,7 @@ function showExtra(givenType){
 
 <div class="row">
 
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="username" class="col-md-2 font-weight-bold pl-2">Username</label>
            
@@ -444,7 +445,7 @@ function showExtra(givenType){
            <input type="text" class="form-control" placeholder="Username" name="username" required="required">
           </div>
         </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-6 col-sm-6 col-xs-12">
            <label for="password" class="col-md-2 font-weight-bold pl-2">Password</label>
             <div class="col-md-10">
            <input type="password" class="form-control" placeholder="password" name="password" required="required">
@@ -453,7 +454,7 @@ function showExtra(givenType){
 </div>
 
 <div class="row">
-  <div class="form-group col-md-6">
+  <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="account" class="col-md-2 font-weight-bold pl-2">Account No.</label>
            
@@ -461,7 +462,7 @@ function showExtra(givenType){
            <input type="text" class="form-control" placeholder="0000 0000 0000 0000" name="account" required="required">
           </div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-6 col-sm-6 col-xs-12">
 
            <label for="pan" class="col-md-2 font-weight-bold pl-2">PAN NO</label>
            
